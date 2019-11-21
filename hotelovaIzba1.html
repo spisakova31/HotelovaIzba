@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Hotelová izba</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="sprites2v.js"></script>
+  <script> var homeDir = ""; </script>
+  <script src="hotelovaIzba1.js"></script>
+  <script>
+    var uloha = new hotelovaIzba1("canvas", true, homeDir);
+  </script>
+</head>
+<body>
+<h2>Hotelová izba</h2>
+<p>klikaj na hrany</p>
+<div class="gameArea">
+  <canvas id="canvas" style="touch-action: none; display: block; width: 760px; height:330px"></canvas>
+  <p id="result">X</p>
+</div>
+</body>
+</html>
