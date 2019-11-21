@@ -1,13 +1,22 @@
 body {
   margin: 0px;
   padding: 0px;
-  background-color: #E6E6FA;
+  background-color: #ededed;;
   text-align: center;
+  font-family: Arial, Helvetica, Tahoma, sans-serif;
+  font-size: 15px;
 }
 
-canvas {
+header {
+  width: 100%;
+  color: #fff;
+  background-color: #1abc9c;
+  padding: 1px;
+}
+
+#canvas1 {
   width: 760px; 
-  height:330px
+  height:300px;
   padding-left: 0;
   padding-right: 0;
   margin-left: auto;
@@ -17,18 +26,42 @@ canvas {
 }
 
 .gameArea {
+  width: 800px; 
+  margin-left: auto;
+  margin-right: auto;
   background-color: #fff;
+  border: 1px solid #000;
   padding-bottom: 20px;
   text-align: center;
+}
+
+.description {
+  width: 760px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px;
+  line-height: 1.4;
+}
+
+
+.description p {
+  margin-bottom: 4px;
 }
 
 #result {
   background-color: #f7c41b;
   border-radius: 30px;
   color: #fff;
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 0px;
   margin-left: auto;
   margin-right: auto;
   padding: 20px;
   width: 20px;
   height: 20px;
+}
+
+footer {
+
 }

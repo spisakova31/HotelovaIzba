@@ -2,21 +2,35 @@
 <html>
 <head>
   <meta charset="UTF-8" />
-  <title>Hotelová izba</title>
+  <title>Hotelové izby</title>
   <link rel="stylesheet" href="style.css">
   <script src="sprites2v.js"></script>
   <script> var homeDir = ""; </script>
   <script src="hotelovaIzba1.js"></script>
   <script>
-    var uloha = new hotelovaIzba1("canvas", true, homeDir);
+    var uloha = new hotelovaIzba1("canvas1", true, homeDir);
   </script>
 </head>
 <body>
-<h2>Hotelová izba</h2>
-<p>klikaj na hrany</p>
+
+<header>
+  <h1>Hotelové izby</h1>
+</header>
+
+<div class="description">
+  <p>V hoteli sú izby očíslované dvojcifernými číslami. Desiatky označujú, na ktorom poschodí sa izba nachádza, jednotky vyjadrujú vzdialenosť izby od výťahu.
+  Zákazník, ktorý sa prišiel ubytovať, nechce veľa chodiť. Preto izbu chce čo najbližšie k výťahu. Ak sú dve izby rovnako ďaleko od výťahu, tak chce izbu na nižšom poschodí.</p>
+  <p><b>Ťahaním čísel usporiadaj izby zľava doprava podľa toho, ako zákazníkovi vyhovujú. Začni izbou, ktorú chce najviac.</b></p>
+</div>
+
 <div class="gameArea">
-  <canvas id="canvas" style="touch-action: none; display: block; width: 760px; height:330px"></canvas>
+  <canvas id="canvas1"></canvas>
   <p id="result">X</p>
 </div>
+
+<footer>
+  <p>Kristína Karafová, Andrea Spišáková | 2019 </p>
+</footer>
+
 </body>
 </html>
