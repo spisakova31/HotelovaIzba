@@ -136,3 +136,29 @@ footer {
   background-color: #0a0938 !important;
   color: #fff !important;
 }
+
+/* ------------------------- hotelovaIzba3    */
+
+.setHeight{
+  height:420px !important;
+}
+
+.p-t-10{
+  padding-top: 10px;
+}
+
+.gener{
+  margin:1em;
+}
+
+.gener input{
+  width: 40px;
+}
+
+button{
+  background-color: #1abc9c;
+  border: 1px solid #12876f;
+  padding: .375rem .75rem;
+  border-radius: .25rem;
+  color: white;
+}
