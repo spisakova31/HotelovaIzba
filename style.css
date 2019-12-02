@@ -1,7 +1,17 @@
+html{
+  margin: 0px;
+  background-color: #EDEDED;
+  background-image: url("images/bg.png");
+  background-position: 50% 100%;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  height: 100%;
+}
+
 body {
   margin: 0px;
   padding: 0px;
-  background-color: #ededed;;
+  background-color: transparent;
   text-align: center;
   font-family: Arial, Helvetica, Tahoma, sans-serif;
   font-size: 15px;
@@ -11,12 +21,16 @@ header {
   width: 100%;
   color: #fff;
   background-color: #1abc9c;
-  padding: 1px;
+  padding: 1px 0px;
+}
+
+footer {
+  margin: 0px;
 }
 
 #canvas1 {
   width: 760px; 
-  height:300px;
+  height:250px;
   padding-left: 0;
   padding-right: 0;
   margin-left: auto;
@@ -29,8 +43,10 @@ header {
   width: 800px; 
   margin-left: auto;
   margin-right: auto;
+  padding-top: 30px;
   background-color: #fff;
   border: 1px solid #000;
+  border-top: none;
   padding-bottom: 20px;
   text-align: center;
 }
@@ -54,7 +70,7 @@ header {
   color: #fff;
   font-size: 20px;
   font-weight: bold;
-  margin-top: 0px;
+  margin-top: 20px;
   margin-left: auto;
   margin-right: auto;
   padding: 20px;
@@ -62,6 +78,61 @@ header {
   height: 20px;
 }
 
-footer {
 
+/* ------------------------- hotelovaIzba2    */
+
+#cardsSection {
+  margin: 20px 20px; 
+  display: flex;
+  justify-content: space-between;   
+}
+
+.cardImg {
+  width: 70px;
+  height: 70px;
+}
+
+#targetsSection {
+  height: 70px;
+  margin: 0px;
+  margin-bottom: 60px;
+  padding: 0px;
+}
+
+/* ------------------------- navigation tabs    */
+.tab {
+  width: 800px;
+  margin: auto; 
+  overflow: hidden;
+  border: 1px solid #000;
+  background-color: transparent;
+  color: #000;
+  padding: 0px;
+}
+
+.tab a {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 10px 0px;
+  transition: 0.3s;
+  width: 33.333%;
+  margin: 0px;
+  font-size: 19px;
+  color: inherit;
+  text-decoration: none;
+}
+
+
+.tab a:hover {
+  background-color: #7e7e88;
+}
+
+
+.act {
+  border: 1px solid #000;
+  background-color: #0a0938 !important;
+  color: #fff !important;
 }

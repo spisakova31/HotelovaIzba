@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Hotelové izby</title>
+  <link rel="stylesheet" href="style.css">
+  
+  <script src="jquery.js"></script>
+  <script src="jquery-ui.min.js"></script>
+  <script>
+  
+  $(document).ready(function() {
+  
+    var card_values = [12, 25, 11, 43, 22, 15, 18, 31, 44, 52];
+    var spravne = [11, 31, 12, 22, 52, 43, 44, 15, 25, 18];
+    var path = "images/";
+  	var card_width = 70;
+    var x_targets = 65;
+    var y_targets = 210;
+    
+    var x_cards = 43;
+  	var y_cards = 110;
+    
+    $("#cardsSection").empty();
+    for (var i = 0; i < card_values.length; i++){
+      var card = $('<img class="cardImg">').attr({
+          'src': path + card_values[i] + '.png',
+          'id': 'card' + i,
+          'value': card_values[i]
+          });
+      
+      $("#cardsSection").append(card);
+    }
+    
+    $(".cardImg").each(function( index, e ) {
+          var card = $(e);
+          var offsetLeft = card.offset().left;
+          var offsetTop = card.offset().top;
+          card.attr("homeOffsetLeft", offsetLeft);
+          card.attr("homeOffsetTop", offsetTop);
+          
+        });
+    
+    $("#targetsSection").empty();
+    for (var i = 0; i < card_values.length; i++){
+      var target = $('<img class="targetImg">').attr({
+          'src': path + 'empty.png',
+          'id': 'target' + i,
+          'card': null, 
+          'card_value': null
+          });
+      $("#targetsSection").append(target);
+    }
+    
+    $('.cardImg').draggable( {
+  	  containment: '.gameArea',
+      tolerance: 'fit',
+  		stack: 'img',
+  		cursor: 'move',
+  		opacity: 1, 
+      revert: false
+  	});
+    
+    $('.gameArea').droppable( {
+      accept: ".cardImg",
+      drop: onDragStop
+    });
+
+    function checkSolution(){
+      var res = getResult();
+      var color = '#f7c41b';
+      if (res === 'A') color = '#51b558';
+      if (res === 'D') color = '#b85151';
+
+			document.getElementById('result').innerHTML = res;
+      document.getElementById('result').style.backgroundColor = color;
+    }
+    
+    function getResult(){
+       
+       var ok = true;
+       var p = 0;
+       
+       $(".targetImg" ).each(function( index, e ) {
+          var target = $(e);
+          if (target.attr("card_value") == null) p++;
+        });
+        
+       if (p == card_values.length)  {
+        return "X";
+       } else {
+         $(".targetImg" ).each(function( i, e ) {
+          var target = $(e);
+          if (target.attr("card_value") == null){
+            ok = false;
+          }  else {
+             if (target.attr("card_value") != spravne[i]) {
+                ok = false;
+            }
+          }
+        });
+       
+       }
+       
+       if (ok)
+          return "A";
+       else
+          return "D";
+    }
+    
+    function onDragStart(event, ui){
+    
+      var card = ui.draggable;
+    }
+    
+    function onGameAreaDragStop(event, ui){
+       var card = ui.draggable;
+       var homeOffsetLeft = card.attr("homeOffsetLeft");
+       var homeOffsetTop = card.attr("homeOffsetTop");
+       
+       card.offset({'top': homeOffsetTop, 'left': homeOffsetLeft});
+       
+    }
+    
+    function onDragStop(event, ui){
+      var card = ui.draggable;
+      
+      var trafil = false;
+      var comingFromTarget = card.attr("target");
+      var targetToBeSet = null;
+      
+      var cardOffsetX = parseInt( ui.offset.left ) + card_width/2;
+      var cardOffsetY = parseInt( ui.offset.top ) + card_width/2;
+      
+      $(".targetImg" ).each(function( index, e ) {
+          var target = $(e);
+          if (target.offset().left < cardOffsetX && target.offset().left + card_width > cardOffsetX
+              && target.offset().top < cardOffsetY && target.offset().top + card_width > cardOffsetY) {
+              
+              target.attr("card_value", null);
+              trafil = true;
+              targetToBeSet = target.attr("id");
+              card.offset({'top': target.offset().top, 'left': target.offset().left});  
+              
+              card.attr("target", targetToBeSet);
+              target.attr("card_value", card.attr("value")); 
+              
+              $(".cardImg").each(function( index, e ) {
+                var other = $(e);
+                if (other.attr("id") != card.attr("id")){
+                
+                   if (other.attr("target") && targetToBeSet == other.attr("target")){
+                       var otherOffsetX, otherOffsetY;
+                       if (!comingFromTarget){
+                          otherOffsetX = other.attr("homeOffsetLeft");
+                          otherOffsetY = other.attr("homeOffsetTop");
+                          other.attr("target", null);
+                          
+                       } else {
+                          var otherTarget = $('#' + comingFromTarget);
+                          otherOffsetX = otherTarget.offset().left;
+                          otherOffsetY = otherTarget.offset().top;
+                          other.attr("target", comingFromTarget);
+                          otherTarget.attr("card_value", other.attr("value")); 
+                       }
+                       other.offset({'top': otherOffsetY, 'left': otherOffsetX}); 
+                   }
+                }
+              });
+          }
+      });
+      
+      
+      if (!trafil){
+        var target = $('#'+comingFromTarget);
+        var homeOffsetLeft = card.attr("homeOffsetLeft");
+        var homeOffsetTop = card.attr("homeOffsetTop");
+        card.offset({'top': homeOffsetTop, 'left': homeOffsetLeft});
+        target.attr("card_value", null);
+      }
+    
+      card.attr("target", targetToBeSet);
+      checkSolution();
+    }
+
+
+  });
+  </script>
+</head>
+<body>
+
+<header>
+  <h1>Hotelové izby</h1>
+</header>
+
+<div class="description">
+  <p>V hoteli sú izby očíslované dvojcifernými číslami. Desiatky označujú, na ktorom poschodí sa izba nachádza, jednotky vyjadrujú vzdialenosť izby od výťahu.
+  Zákazník, ktorý sa prišiel ubytovať, nechce veľa chodiť. Preto izbu chce čo najbližšie k výťahu. Ak sú dve izby rovnako ďaleko od výťahu, tak chce izbu na nižšom poschodí.</p>
+  <p><b>Ťahaním čísel usporiadaj izby zľava doprava podľa toho, ako zákazníkovi vyhovujú. Začni izbou, ktorú chce najviac.</b></p>
+</div>
+
+<div class="tab">
+  <a href="hotelovaIzba1.html" class="tablinks">Verzia 1</a>
+  <a href="hotelovaIzba2.html" class="tablinks act">Verzia 2</a>
+  <a href="" class="tablinks">Verzia 3</a>
+</div>
+
+<div class="gameArea">
+  <div id="cardsSection"></div>
+  <div id="targetsSection"></div>
+  <p id="result">X</p>
+</div>
+
+<footer>
+  <p>Kristína Karafová, Andrea Spišáková | 2019 </p>
+</footer>
+
+</body>
+</html>

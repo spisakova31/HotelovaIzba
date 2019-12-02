@@ -67,10 +67,10 @@ function hotelovaIzba1(canvas, enabled, homeDir) {
 	var path = homeDir + "/images/";
 	
   var x_targets = 65;
-  var y_targets = 210;
+  var y_targets = 160;
   
   var x_cards = 43;
-	var y_cards = 110;
+	var y_cards = 60;
   
   var targets = [];
   for (var i = 0; i < card_images.length; i++){
