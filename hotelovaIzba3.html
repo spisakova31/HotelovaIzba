@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Hotelové izby</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="jquery.js"></script>
+  <script src="sprites2v.js"></script>
+  <script src="hotelovaIzba3.js"></script>
+</head>
+<body>
+
+<header>
+  <h1>Hotelové izby</h1>
+</header>
+
+<div class="description">
+  <p>V hoteli sú izby očíslované dvojcifernými číslami. Desiatky označujú, na ktorom poschodí sa izba nachádza, jednotky vyjadrujú vzdialenosť izby od výťahu.
+  Zákazník, ktorý sa prišiel ubytovať, nechce veľa chodiť. Preto izbu chce čo najbližšie k výťahu. Ak sú dve izby rovnako ďaleko od výťahu, tak chce izbu na nižšom poschodí.</p>
+  <p><b>Ťahaním čísel usporiadaj izby zľava doprava podľa toho, ako zákazníkovi vyhovujú. Začni izbou, ktorú chce najviac.</b></p>
+</div>
+
+<div class="tab">
+  <a href="hotelovaIzba1.html" class="tablinks">Verzia 1</a>
+  <a href="hotelovaIzba2.html" class="tablinks">Verzia 2</a>
+  <a href="hotelovaIzba3.html" class="tablinks act">Verzia 3</a>
+</div>
+<div class="gameArea p-t-10">
+  <div class="gener">
+    <p>Zadaj počet čísel: 
+      <input type="number" name="count" id="countInput">
+      <button id="generateButton">Generuj</button>
+      <button id="solveButton" onclick="solve()">Vyrieš</button>
+      <button id="backToHomePos" onclick="backToHomePos()">Späť</button>
+      <button id="save" onclick="save()">Ulož</button>
+      <button id="load" onclick="load()">Načítať</button>
+    </p>
+    <hr>
+    <canvas id="canvas1" class="setHeight"></canvas>
+    <p id="result">X</p>
+  </div>
+</div>
+
+<footer>
+  <p>Kristína Karafová, Andrea Spišáková | 2019 </p>
+</footer>
+</body>
+</html>
